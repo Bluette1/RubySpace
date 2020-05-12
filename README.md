@@ -1,5 +1,7 @@
 # RubySpace
 
+[![Run on Repl.it](https://repl.it/badge/github/Bluette1/RubySpace)](https://repl.it/github/Bluette1/RubySpace)
+
 This is a workspace for learning and practicing coding in Ruby.
 
 
