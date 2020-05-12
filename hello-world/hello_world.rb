@@ -6,8 +6,6 @@ To get started with TDD, see the `README.md` file in your
 `ruby/hello-world` directory.
 =end
 
-require 'minitest/pride'
-
 class HelloWorld
     def self.hello
     'Hello, World!'
