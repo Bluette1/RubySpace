@@ -3,11 +3,9 @@
 This is a workspace for learning and practicing coding in Ruby.
 
 
-![Run on replit]()
-
 ## Built With
 
-- Ruby 
+- Ruby 2.7.1
 
 
 ## Description
