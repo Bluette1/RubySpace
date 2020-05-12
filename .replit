@@ -1,0 +1,6 @@
+language = "ruby"
+# run = "cd hello-world \n ruby hello_world_test.rb"
+# run = "git add . \n git commit -m 'adding .replit file and badge'"
+# run = "git pull origin adding-hello-world"
+# run = "git commit -m 'committing merge'"
+run = "git add .replit \n git commit -m 'committing .replit changes'"
