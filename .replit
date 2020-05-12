@@ -1,0 +1,2 @@
+language = "ruby"
+run = "pwd \n cd smallest_permutation \n ls \n ruby smallest_permutation.rb"
