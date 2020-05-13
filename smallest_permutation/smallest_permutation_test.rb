@@ -13,9 +13,11 @@ rescue LoadError => e
 end
   
 class SmallestPermutationTest < Minitest::Test
+
     def test_find_smallest
-
-      assert_equal 304689, SmallestPermutation.find_smallest(846903)
-
+      assert_equal 304689, SmallestPermutation.find_smallest(846903) 
+      assert_equal 1004568 , SmallestPermutation.find_smallest(5468001) 
+      assert_equal 1345, SmallestPermutation.find_smallest(5341)
     end
+
 end
