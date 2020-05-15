@@ -1,9 +1,10 @@
 language = "ruby"
-run = "pwd \n cd smallest_permutation \n ls \n ruby smallest_permutation.rb"
-
+# run = "pwd \n cd next_bigger_number \n ls \n ruby next_bigger_number_test.rb"
+ 
+# run = "pwd \n cd smallest_permutation \n ls \n ruby smallest_permutation.rb"
 # run = "cd hello-world \n ruby hello_world_test.rb"
 # run = "git add . \n git commit -m 'adding .replit file and badge'"
 # run = "git pull origin adding-hello-world"
 # run = "git commit -m 'committing merge'"
-# run = "git add .replit \n git commit -m 'committing .replit changes'"
+run = "git add .replit \n git commit -m 'committing .replit changes'"
 
