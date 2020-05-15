@@ -1,10 +1,18 @@
 =begin
 Task: Create a function that takes a positive integer and returns the next bigger number that can be formed by 
 rearranging its digits. Where there's no next bigger number return -1.
-If the number has only 1 digit, return -1.
-The next bigger number will always be a result of swapping the last two digits of the given number,
-if the last digit is bigger than the second last digit.
-If the last digit is smaller than or equal to the the second last digit, return -1.
+If the number has only 1 digit, return -1. 
+If there are only 2 digits:
+    - The next bigger number will always be a result of swapping these two digits,
+    if the last digit is bigger than the second last digit
+We use this same drift to compute the answer for larger numbers
+    - Create variables: `last` and `second_last` to mark adjacent positions as we iterate through the digits of the number,
+    for example if n = 89, last = 9, and second_last = 8.
+    - We iterate through the digits of the number from right to left until we find a
+    a bigger adjacent digit to the right of `last`
+    - If we reach the end of the number without finding an interchangeable adjacent pair of digits, return -1.
+    - After finding the interchangeable pair, we sort all the digits to the right of  `second_last`
+    - We swap `second_last` with the smallest bigger digit to the right of `second_last`
 =end
 class NextBiggerNumber
 
@@ -55,7 +63,7 @@ class NextBiggerNumber
             idx += 1
         end
 
-        # if we reached the end of the number without finding a bigger adjacent digit to the right of 
+        # if we reached the end of the number without finding a bigger adjacent digit to the right of `last`
         if second_last == 0 and idx == length
             return -1 # a next bigger permutation of the number doesn't exist
         end
