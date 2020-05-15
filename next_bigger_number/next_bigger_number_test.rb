@@ -17,17 +17,20 @@ class NextBiggerNumberTest < Minitest::Test
     def test_next_bigger_number
 
       # bigger number exists  
-    #   assert_equal 21, NextBiggerNumber.find_next_bigger(12) 
-    #   assert_equal 531, NextBiggerNumber.find_next_bigger(513) 
-    #   assert_equal 2071, NextBiggerNumber.find_next_bigger(2017)
-    #   assert_equal 414, NextBiggerNumber.find_next_bigger(144)
+      assert_equal 21, NextBiggerNumber.find_next_bigger(12) 
+      assert_equal 531, NextBiggerNumber.find_next_bigger(513) 
+      assert_equal 2071, NextBiggerNumber.find_next_bigger(2017)
+      assert_equal 414, NextBiggerNumber.find_next_bigger(144)
       
       # bigger number doesn't exist
-    #   assert_equal -1, NextBiggerNumber.find_next_bigger(9) 
-    #   assert_equal -1 , NextBiggerNumber.find_next_bigger(111) 
-    #   assert_equal -1, NextBiggerNumber.find_next_bigger(531)
+      assert_equal -1, NextBiggerNumber.find_next_bigger(9) 
+      assert_equal -1 , NextBiggerNumber.find_next_bigger(111) 
+      assert_equal -1, NextBiggerNumber.find_next_bigger(531)
 
-        # test for big numbers
-        assert_equal 59884848483559, NextBiggerNumber.find_next_bigger(59884848495835)
+      # test for big numbers
+      assert_equal 59884848495853, NextBiggerNumber.find_next_bigger(59884848495835)
+
+      # Number with 0 in swap position
+      assert_equal 890, NextBiggerNumber.find_next_bigger(809)
     end
 end

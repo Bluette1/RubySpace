@@ -28,7 +28,7 @@ This is a workspace for learning and practicing coding in Ruby.
 - The content in this repository was retrieved from or inspired by the following sites
   - [The Odin project](https://www.theodinproject.com/courses/ruby-programming)
   - [Exercism](https://exercism.io/tracks/ruby)
-
+  - [Codewars](https://www.codewars.com/)
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
