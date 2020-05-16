@@ -19,9 +19,9 @@ class NextBiggerNumberTest < Minitest::Test
     assert_equal 531, NextBiggerNumber.find_next_bigger(513)
     assert_equal 2071, NextBiggerNumber.find_next_bigger(2017)
     assert_equal 414, NextBiggerNumber.find_next_bigger(144)
-    assert_equal (-1), NextBiggerNumber.find_next_bigger(9)
-    assert_equal (-1), NextBiggerNumber.find_next_bigger(111)
-    assert_equal (-1), NextBiggerNumber.find_next_bigger(531)
+    assert_equal(-1, NextBiggerNumber.find_next_bigger(9))
+    assert_equal(-1, NextBiggerNumber.find_next_bigger(111))
+    assert_equal(-1, NextBiggerNumber.find_next_bigger(531))
     assert_equal 59_884_848_495_853, NextBiggerNumber.find_next_bigger(59_884_848_495_835)
     assert_equal 890, NextBiggerNumber.find_next_bigger(809)
   end
