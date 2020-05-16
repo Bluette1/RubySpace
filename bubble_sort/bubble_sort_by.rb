@@ -30,6 +30,7 @@ def bubble_sort_by_concept_one array
     array
 end
 
+# Call the bubble sort by concept one method with a block
 result_one = bubble_sort_by_concept_one(["hi","hello","hey"]) do |left,right|
      left.length - right.length
     end
@@ -65,6 +66,7 @@ def bubble_sort_by_concept_two array
     array
 end
 
+# Call the bubble sort by concept two method with a block
 result_two = bubble_sort_by_concept_two(["hi","hello","hey"]) do |left,right|
     left.length - right.length
    end
