@@ -23,7 +23,7 @@ module Enumerable
                 return product        
             end
             # if symbol is given
-            if args.length == 2
+            if args.length === 2
                 result = args[0]
                 for item in self
                     result = result.send(args[1], item)
