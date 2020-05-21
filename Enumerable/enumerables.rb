@@ -6,12 +6,6 @@ module Enumerable
     end
 
     def my_each_with_index
-        for item in self
-
-        end    
-    end
-
-    def my_each_with_index
         idx = 0
         for item in self
             yield item, idx
@@ -29,14 +23,35 @@ module Enumerable
         selected
     end
 
-    def my_all?
+    def my_all? *arg
         answer = true
-        for item in self
-            if not yield item
-                answer = false
-                break
+        if block_given?
+            for item in self
+                if not yield item
+                    answer = false
+                    break
+                end
             end
+        else
+            # do a regex test
+            begin
+                for item in self
+                    Regexp.compile(arg[0])
+                    next unless (arg[0] =~ item).nil?
+                    # if arg[0] =~ item
+                    #     next
+                    # end
+                    answer = false
+                    break  
+                end
+                
+            rescue => exception
+                puts "Invalid regex. Please use a valid regex string", exception
+                return
+            end
+           
         end
+
         answer
     end
 
@@ -141,10 +156,19 @@ p [1,2,3,4,5].my_select {|num|  num.even?}
 puts  "all?::::::::::::::::::::"
 puts %w[ant bear cat].all? { |word| word.length >= 3 } 
 puts %w[ant bear cat].all? { |word| word.length >= 4 } 
+puts  "all?:::Regex:::::::::::::::::"
+puts %w[ant bear cat].all?(/t/)                        
+puts %w[ant beat cat].all?(/t/)      
 
 puts  "my_all?::::::::::::::::::::"
 puts %w[ant bear cat].my_all? { |word| word.length >= 3 } 
 puts %w[ant bear cat].my_all? { |word| word.length >= 4 } 
+puts  "my_all?:::Regex:::::::::::::::::"
+puts %w[ant bear cat].my_all?(/t/)                        
+puts %w[ant beat cat].my_all?(/t/)                       
+puts %w[ant beat cat].my_all?('*')   
+puts %w[ant beat cat].my_all?("BOOM/")   
+
 
 puts  "any?::::::::::::::::::::"
 puts %w[ant bear cat].any? { |word| word.length >= 3 } 
