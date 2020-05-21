@@ -10,7 +10,17 @@ module Enumerable
                 end
             end
         else
-            # check if the object is a Class
+            # check if no arguments were passed
+            if arg.length == 0
+                for item in self
+                    if item.nil?
+                        answer = false
+                        return answer
+                    end
+                end
+                return answer
+            end
+            # check if the arg object is a Class
             if arg[0].is_a?(Class) 
                 puts "Yes!!!!"
                 for item in self
@@ -26,9 +36,6 @@ module Enumerable
                 for item in self
                     Regexp.compile(arg[0])
                     next unless (arg[0] =~ item).nil?
-                    # if arg[0] =~ item
-                    #     next
-                    # end
                     answer = false
                     break  
                 end
@@ -52,9 +59,12 @@ puts  "all?::::::::::::::::::::"
 # puts %w[ant bear cat].all?(/t/)                        
 # puts %w[ant beat cat].all?(/t/)   
 # puts %w[ant beat cat].my_all?('*')   
-puts %w[ant beat cat].my_all?("BOOM/")  
-puts [1, 2i, 3.14].all?(Numeric)    
-puts %w[ant bear cat].my_all?(String)   
+# puts %w[ant beat cat].my_all?("BOOM/")  
+# puts [1, 2i, 3.14].all?(Numeric)    
+# puts %w[ant bear cat].my_all?(String)   
+puts [nil, true, 99].all?   
+puts [1, true, 99].all? 
+puts [].all?
 
 puts  "my_all?::::::::::::::::::::"
 # puts %w[ant bear cat].my_all? { |word| word.length >= 3 } 
@@ -63,6 +73,9 @@ puts  "my_all?::::::::::::::::::::"
 # puts %w[ant bear cat].my_all?(/t/)                        
 # puts %w[ant beat cat].my_all?(/t/)                       
 # puts %w[ant beat cat].my_all?('*')   
-puts %w[ant beat cat].my_all?("BOOM/")   
-puts [1, 2i, 3.14].my_all?(Numeric) 
-puts %w[ant bear cat].my_all?(String)  
+# puts %w[ant beat cat].my_all?("BOOM/")   
+# puts [1, 2i, 3.14].my_all?(Numeric) 
+# puts %w[ant bear cat].my_all?(String)  
+puts [nil, true, 99].my_all? 
+puts [1, true, 99].my_all? 
+puts [].my_all?
