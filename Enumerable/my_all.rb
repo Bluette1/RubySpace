@@ -13,7 +13,7 @@ module Enumerable
             # check if no arguments were passed
             if arg.length == 0
                 for item in self
-                    if item.nil?
+                    if item.nil? or item === false
                         answer = false
                         return answer
                     end
@@ -31,7 +31,6 @@ module Enumerable
                 return answer
             end
 
-          
             begin
                 for item in self
                     Regexp.compile(arg[0])
