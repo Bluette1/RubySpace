@@ -101,7 +101,7 @@ module Enumerable
         result
     end
 
-    def my_map_proc_block proc, &block
+    def my_map_proc_block proc
         unless proc.is_a?(Proc)  
             result = []
             for item in self
@@ -124,7 +124,7 @@ module Enumerable
     end
 end
 
-puts "each..."
+puts "each:::::::::::::::"
 [1,2,3].each do |item|
     puts item + 10
 end
@@ -149,6 +149,7 @@ end
 
 puts "select::::::::::::::::"
 p [1,2,3,4,5].select {|num|  num.even?} 
+p [1,2,3,4,5].select
 
 puts "my_select:::::::::::::"
 p [1,2,3,4,5].my_select {|num|  num.even?} 
@@ -190,13 +191,20 @@ puts "count::::::::::::::"
 result_count = [1, 2, 4, 2].count do |num|
      num % 2 == 0
 end
+
 p result_count
+p [1, 2, 4, 2].count
+p [1, 2, 4, 2].count(2)
+
+pu
 
 puts "my_count::::::::::::::"
 my_result_count = [1, 2, 4, 2].my_count do |num|
     num % 2 == 0
 end
 p my_result_count
+p [1, 2, 4, 2].my_count
+p [1, 2, 4, 2].mycount(2)
 
 puts "map:::::::::::::::::::::::::"
 p (1..4).map { |i| i*i }      

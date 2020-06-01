@@ -1,57 +1,44 @@
 module Enumerable
-    def my_none? *arg
+    def my_each
+        return to_enum(:my_each) unless block_given?
+        for item in self
+          yield item
+        end
+      end
+    def my_none?(arg=nil) 
         answer = true
         if block_given?
-            for item in self
-                next unless yield item
-                answer = false
-                break
-            end
-            answer
+         my_each do |item|
+            next unless yield item
+            return false
+          end
+          return answer
         else
-            # check if no arguments were passed
-            if arg.length === 0
-                # puts answer, "answer:::::::::::::::::::::::::::::::::::::::"
-                for item in self
-                    if not (item.nil? or item === false)
-                        # puts item, ": Yes!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-                        answer = false
-                        return answer
-                    end
-                end
-                # puts answer, "answer:::::::::::::::::::::::::::::::::::::::"
-                return answer
-            end
-            # check if the arg object is a Class
-            if arg[0].is_a?(Class) 
-                puts "Yes!!!!"
-                for item in self
-                    next unless item.is_a?(arg[0])
-                    answer = false
-                    return answer
-                end
-                return answer
-            end
+          if arg.nil?
+           my_each do |item|
+              next if item.nil? or item == false
 
-            begin
-                for item in self
-                    Regexp.compile(arg[0])
-                    next unless arg[0] =~ item
-                    answer = false
-                    break  
-                end
-                
-            rescue => exception
-                puts "Invalid regex. Please use a valid regex string", exception
-                return
+              return false
             end
-        
+            return answer
+          end
+          if arg.is_a?(Class)
+           my_each do |item|
+              next unless item.is_a?(arg)
+    
+              return false
+            end
+            return answer
+          end
+    
+            my_each do |item|
+              next unless arg =~ item
+              return false
+            end
         end
-
         answer
-        
+      end
     end
-end
 
 puts "none?::::::::::::::::::::::::::::::::"
 puts %w{ant bear cat}.none? { |word| word.length == 5 } 

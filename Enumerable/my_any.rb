@@ -1,53 +1,43 @@
 module Enumerable
-    def my_any? *arg
-        answer = false
-        if block_given?
-            for item in self
-                next unless yield item
-                answer = true
-                break
-            end
-        else
-            # check if no arguments were passed
-            if arg.length == 0
-                for item in self
-                    if not item.nil? or item === true
-                        answer = true
-                        return answer
-                    end
-                end
-                return answer
-            end
-            # check if the arg object is a Class
-            if arg[0].is_a?(Class) 
-                puts "Yes!!!!"
-                for item in self
-                    next unless item.is_a?(arg[0])
-                    answer = true
-                    return answer
-                end
-                return answer
-            end
+    def my_each
+        return to_enum(:my_each) unless block_given?
+        for item in self
+          yield item
+        end
+      end
+      
+  def my_any?(arg=nil)
+    answer = false
+    if block_given?
+      my_each do |item|
+        next unless yield item
+        return true
+      end
+    else
+      if arg.nil?
+        my_each do |item|
+          next unless !item.nil? or item == true
+          return true
+        end
+        return answer
+      end
+      if arg.is_a?(Class)
+        my_each do |item|
+          next unless item.is_a?(arg)
+        return true
+        end
+        return answer
+      end
+        my_each do |item|
+          next unless arg =~ item
 
-            begin
-                for item in self
-                    Regexp.compile(arg[0])
-                    next unless arg[0] =~ item
-                    answer = true
-                    break  
-                end
-                
-            rescue => exception
-                puts "Invalid regex. Please use a valid regex string", exception
-                return
-            end
-        
+          return true
         end
 
-        answer
     end
+    answer
+  end
 end
-
 puts  "any?::::::::::::::::::::"
 puts %w[ant bear cat].any? { |word| word.length >= 3 } 
 puts %w[ant bear cat].any? { |word| word.length >= 4 } 

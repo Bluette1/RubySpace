@@ -1,54 +1,39 @@
 module Enumerable
     
-    def my_all? *arg
-        answer = true
-        if block_given?
-            for item in self
-                if not yield item
-                    answer = false
-                    break
-                end
-            end
-        else
-            # check if no arguments were passed
-            if arg.length == 0
-                for item in self
-                    if item.nil? or item === false
-                        answer = false
-                        return answer
-                    end
-                end
-                return answer
-            end
-            # check if the arg object is a Class
-            if arg[0].is_a?(Class) 
-                puts "Yes!!!!"
-                for item in self
-                    next unless not (item.is_a?(arg[0]))
-                    answer = false
-                    return answer
-                end
-                return answer
-            end
-
-            begin
-                for item in self
-                    Regexp.compile(arg[0])
-                    next unless (arg[0] =~ item).nil?
-                    answer = false
-                    break  
-                end
-                
-            rescue => exception
-                puts "Invalid regex. Please use a valid regex string", exception
-                return
-            end
-        
+  def my_all?(arg=nil)
+    # return to_enum(:my_each) unless block_given? or arg
+    answer = true
+    if block_given?
+      each do |item|
+        unless yield item
+            return false
         end
+      end
+      return answer
+    else
+      if arg.nil?
+        each do |item|
+          next unless item.nil? or item == false
+          return false
+        end
+        return answer
+      end
+      if arg.is_a?(Class)
+        each do |item|
+          next if item.is_a?(arg)
+          return false
+        end
+        return answer
+      end
+    each do |item|
+        next unless (arg =~ item).nil?
 
-        answer
+        return false
+    end
     end
 
+    answer
+  end
 end
 
 puts  "all?::::::::::::::::::::"
