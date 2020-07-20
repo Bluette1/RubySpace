@@ -65,17 +65,39 @@ hanoi_steps(4)
 #    1->3
 #    2->3
 =end
+def move(disks, starting, goal)
+  if disks == 1 #base case
+    puts starting + "->" + goal 
+  else 
+
+    # Steps:
+    # move n - 1 disks from starting to spare peg
+    # move bottom disk from starting to goal peg
+    # move n - 1 disks from spare peg to goal peg
+
+    spare_peg = ['1', '2', '3'].reject do |x|
+      x == starting || x == goal
+    end
+    spare_peg = spare_peg[0]
+
+    move(disks - 1, starting, spare_peg) 
+    move(1, starting, goal)
+    move(disks - 1, spare_peg, goal)
+  end
+
+end
 
 def hanoi_steps(number_of_discs)
-    # your code here
+  move(number_of_discs, "1", "3")
 end
   
-  hanoi_steps(2)
+  # hanoi_steps(1)
+  # hanoi_steps(2)
   # => 1->2 
   #    1->3 
   #    2->3
   
-  hanoi_steps(3)
+  # hanoi_steps(3)
   # => 1->3 
   #    1->2
   #    3->2
@@ -83,6 +105,7 @@ end
   #    2->1
   #    2->3
   #    1->3
+  
   
   hanoi_steps(4)
   # => 1->2
@@ -100,3 +123,4 @@ end
   #    1->2
   #    1->3
   #    2->3
+
