@@ -7,29 +7,27 @@ If the guess was too low, that is, array[guess] < target, then set min = guess +
 Otherwise, the guess was too high. Set max = guess - 1.
 Go back to step 2.
 =end
-def do_search (targetValue, array)
-	min = 0
-    max = array.length - 1
-    
-    binary_search(targetValue, array, min, max)
+def do_search(targetValue, array)
+  min = 0
+  max = array.length - 1
+
+  binary_search(targetValue, array, min, max)
 end
 
 def binary_search(num, array, min, max)
-    
-    if max < min
-        -1
-    else
-        mid = (min + max) / 2
+  if max < min
+    -1
+  else
+    mid = (min + max) / 2
 
-        if array[mid] == num
-            mid
-        elsif array[mid] > num
-            binary_search(num, array, min, mid - 1)
-        else
-            binary_search(num, array, mid + 1, max)
-        end
+    if array[mid] == num
+      mid
+    elsif array[mid] > num
+      binary_search(num, array, min, mid - 1)
+    else
+      binary_search(num, array, mid + 1, max)
     end
-    
+  end
 end
 
 puts do_search(0, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
