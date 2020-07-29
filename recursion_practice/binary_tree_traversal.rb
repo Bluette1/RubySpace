@@ -1,11 +1,13 @@
 =begin
 Creating a Tree
 
-The previous challenge showed how to store a Tree in an Array. But how do you convert a Tree from an Array to the more-standard Node form?
+The previous challenge showed how to store a Tree in an Array.
+But how do you convert a Tree from an Array to the more-standard Node form?
 
 Implementing a Tree
 
-To implement a Tree, we'll create a Node class. It will store an integer of Data, and point to 2 child Nodes.
+To implement a Tree, we'll create a Node class. It will store an integer of Data,
+and point to 2 child Nodes.
 
 class Node
   attr_reader :data
@@ -21,7 +23,8 @@ Create a Node node from a given cell i in the array: Node node = new Node(array[
 Create the children Nodes from their positions in the array. (See step #1).
 Assign the children Nodes to node.left and node.right.
 
-You first create a Node, and then you create children Nodes in the  same manner. This sounds like a recursive function will be needed!
+You first create a Node, and then you create children Nodes in the  same manner.
+This sounds like a recursive function will be needed!
 
 As  mentioned, since trees are recursive structures, recursive functions are  used to navigate them.
 
@@ -53,7 +56,8 @@ end
 
 Challenge
 
-You will be given an array as input, which represents a Tree. Process the array into a Tree of Nodes, as shown above. Then go through the tree and print it in post-order.
+You will be given an array as input, which represents a Tree.
+Process the array into a Tree of Nodes, as shown above. Then go through the tree and print it in post-order.
 Print each number space-separated.
 
 Example test case

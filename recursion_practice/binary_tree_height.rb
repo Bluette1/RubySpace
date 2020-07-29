@@ -1,6 +1,7 @@
 =begin Instructions from your teacher:
 How Tall is the Tree?
-Can you find the height of a Binary Tree? The height is the number of Nodes from the Root to the lowest Leaf. The Tree does not need to be balanced.
+Can you find the height of a Binary Tree? The height is the number of Nodes from the Root
+to the lowest Leaf. The Tree does not need to be balanced.
 
 For example, in the tree below, the height is 4:
 

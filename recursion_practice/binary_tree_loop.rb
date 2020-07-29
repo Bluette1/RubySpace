@@ -5,7 +5,7 @@ class ListNode
     @value = value
     @next_node = next_node
   end
-  end
+end
 
 module LinkedList
   # setup head and tail
@@ -138,7 +138,7 @@ class Node
   def initialize(data, height = nil)
     @data = data
     @height = height
-    end
+  end
 end
 def array_to_tree(array, i)
   return nil if i >= array.length || array[i] == 0
@@ -172,7 +172,7 @@ def maximum_height(node)
 
       node = node.left
 
-      end
+    end
     begin
       max_height = height if height > max_height
       node = right_nodes.pop
