@@ -48,12 +48,12 @@ class Node
     @height = height
   end
 end
-def array_to_tree(array, i)
-  return nil if i >= array.length || array[i] == 0
+def array_to_tree(array, idx)
+  return nil if idx >= array.length || (array[idx]).zero?
 
-  node = Node.new(array[i])
-  node.left = array_to_tree(array, 2 * i + 1)
-  node.right = array_to_tree(array, 2 * i + 2)
+  node = Node.new(array[idx])
+  node.left = array_to_tree(array, 2 * idx + 1)
+  node.right = array_to_tree(array, 2 * idx + 2)
   node
 end
 
@@ -71,25 +71,28 @@ def maximum_height(node)
   # .............................................................................................
 
   loop do
-    until node.nil?
-      height += 1
-      unless node.right.nil?
-        node.right.height = height
-        right_nodes.push(node.right)
-      end
-
-      node = node.left
-
-    end
+    height = move_left(node, right_nodes, height)
     begin
       max_height = height if height > max_height
       node = right_nodes.pop
       height = node.height
-    rescue StandardError => e
+    rescue StandardError
       break
     end
   end
   max_height
+end
+
+def move_left(node, right_nodes, height)
+  until node.nil?
+    height += 1
+    unless node.right.nil?
+      node.right.height = height
+      right_nodes.push(node.right)
+    end
+    node = node.left
+  end
+  height
 end
 
 def tree_height(tree_as_list)

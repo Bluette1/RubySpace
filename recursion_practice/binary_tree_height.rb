@@ -22,12 +22,12 @@ class Node
     @data = data
   end
 end
-def array_to_tree(array, i)
-  return nil if i >= array.length || array[i] == 0
+def array_to_tree(array, idx)
+  return nil if idx >= array.length || (array[idx]).zero?
 
-  node = Node.new(array[i])
-  node.left = array_to_tree(array, 2 * i + 1)
-  node.right = array_to_tree(array, 2 * i + 2)
+  node = Node.new(array[idx])
+  node.left = array_to_tree(array, 2 * idx + 1)
+  node.right = array_to_tree(array, 2 * idx + 2)
   node
 end
 
@@ -35,7 +35,7 @@ def max_height(node, count)
   if node.nil?
     count
   else
-    count = 1 + [max_height(node.left, 0), max_height(node.right, 0)].max
+    1 + [max_height(node.left, 0), max_height(node.right, 0)].max
   end
 end
 

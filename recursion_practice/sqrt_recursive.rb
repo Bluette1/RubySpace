@@ -23,7 +23,7 @@ def sqrt_recursive(number, min_interval, max_interval)
   difference = mid**2 - number
   if difference.zero?
     mid
-  elsif difference > 0
+  elsif difference.positive?
     sqrt_recursive(number, min_interval, mid - 1)
   else
     sqrt_recursive(number, mid + 1, max_interval)

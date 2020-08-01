@@ -7,14 +7,14 @@
 #
 # Towers of Hanoi - Part 2:
 #
-# We just covered the Towers of Hanoi for Case 1 and Case 2, let’s return to 3 disks.
+# We just covered the Towers of Hanoi for Case 1 and Case 2, let us return to 3 disks.
 # Can you describe an algorithm to move the 3 disks from a starting peg to the goal peg?
 # You can refer back to solved cases when needed. Think about the solution before continuing.
 # The Algorithm for 3 disks:
 #  - Move the top 2 disks to the intermediate peg. How? Refer to Case 2.
 #  - Move the bottom Disk to the Goal Peg. (See case 1)
 #  - Move the 2 disks from the intermediate peg to the goal peg. How? Refer to Case 2.
-# Now that we’ve covered 1, 2 and 3 disks, can you figure out an algorithm for solving
+# Now that we have covered 1, 2 and 3 disks, can you figure out an algorithm for solving
 # the towers of Hanoi for any number of N disks?
 
 # Challenge

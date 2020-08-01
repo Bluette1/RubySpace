@@ -1,7 +1,7 @@
 # This will return the square root approximation of a given number to a
 # certain degree of accuracy.Newton's method achieves quadratic convergence
-# fairly quickly, using linear approximation (delta y / delta x is approximately eq. to dy/dx for very small intervals).
-
+# fairly quickly, using linear approximation (delta y / delta x is approximately eq. to
+#  dy/dx for very small intervals).
 def sqrt(num, guess)
   sqrt_newton_mthd_iterative(num, guess)
   sqrt_newton_mthd_iterative(num, guess)
@@ -15,9 +15,9 @@ def sqrt_newton_mthd_iterative(number, guess = 2.5, error = 0.000001)
 
   while abs_error > error
     fx = guessed_square - number
-    derivFx = 2 * guess
+    deriv_fx = 2 * guess
 
-    guess -= (fx / derivFx)
+    guess -= (fx / deriv_fx)
     guessed_square = guess**2
     abs_error = (guessed_square - number).abs
   end
@@ -32,9 +32,9 @@ def sqrt_newton_mthd_recursive(number, guess = 2.5, error = 0.000001)
   else
 
     fx = guessed_square - number
-    derivFx = 2 * guess
+    deriv_fx = 2 * guess
 
-    guess -= (fx / derivFx)
+    guess -= (fx / deriv_fx)
     sqrt_newton_mthd_recursive(number, guess)
   end
 end
@@ -48,9 +48,9 @@ def sqrt_recursive(number, min_interval, max_interval)
     min_interval.to_int
   else
     fx = guessed_square - number
-    derivFx = 2 * min_interval
+    deriv_fx = 2 * min_interval
 
-    min_interval -= (fx / derivFx)
+    min_interval -= (fx / deriv_fx)
     sqrt_recursive(number, min_interval, max_interval)
   end
 end
@@ -69,11 +69,11 @@ def sqrt_recursive_interval(number, min_interval, max_interval)
   end
 end
 
-def calculate_new_rt(rt, number)
-  guessed_square = rt**2
+def calculate_new_rt(root, number)
+  guessed_square = root**2
   fx = guessed_square - number
-  derivFx = 2 * rt
-  new_rt = rt - (fx / derivFx)
+  deriv_fx = 2 * root
+  new_rt = root - (fx / deriv_fx)
   new_rt
 end
 
