@@ -163,7 +163,7 @@ def maximum_height(node)
   # .............................................................................................
 
   loop do
-    while !node.nil?
+    until node.nil?
       height += 1
       unless node.right.nil?
         node.right.height = height
@@ -177,7 +177,7 @@ def maximum_height(node)
       max_height = height if height > max_height
       node = right_nodes.pop
       height = node.height
-    rescue => exception
+    rescue StandardError => e
       break
     end
   end

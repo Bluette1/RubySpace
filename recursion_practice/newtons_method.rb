@@ -1,7 +1,6 @@
-=begin This will return the square root approximation of a given number to a
-certain degree of accuracy.Newton's method achieves quadratic convergence
-fairly quickly, using linear approximation (delta y / delta x is approximately eq. to dy/dx for very small intervals).
-=end
+# This will return the square root approximation of a given number to a
+# certain degree of accuracy.Newton's method achieves quadratic convergence
+# fairly quickly, using linear approximation (delta y / delta x is approximately eq. to dy/dx for very small intervals).
 
 def sqrt(num, guess)
   sqrt_newton_mthd_iterative(num, guess)
@@ -18,7 +17,7 @@ def sqrt_newton_mthd_iterative(number, guess = 2.5, error = 0.000001)
     fx = guessed_square - number
     derivFx = 2 * guess
 
-    guess = guess - (fx / derivFx)
+    guess -= (fx / derivFx)
     guessed_square = guess**2
     abs_error = (guessed_square - number).abs
   end
@@ -35,15 +34,13 @@ def sqrt_newton_mthd_recursive(number, guess = 2.5, error = 0.000001)
     fx = guessed_square - number
     derivFx = 2 * guess
 
-    guess = guess - (fx / derivFx)
+    guess -= (fx / derivFx)
     sqrt_newton_mthd_recursive(number, guess)
   end
 end
 
 def sqrt_recursive(number, min_interval, max_interval)
-  if min_interval.zero? # To prevent division by zero
-    min_interval += 0.000001
-  end
+  min_interval += 0.000001 if min_interval.zero? # To prevent division by zero
   guessed_square = min_interval**2
   abs_error = (guessed_square - number).abs
 
@@ -53,15 +50,13 @@ def sqrt_recursive(number, min_interval, max_interval)
     fx = guessed_square - number
     derivFx = 2 * min_interval
 
-    min_interval = min_interval - (fx / derivFx)
+    min_interval -= (fx / derivFx)
     sqrt_recursive(number, min_interval, max_interval)
   end
 end
 
 def sqrt_recursive_interval(number, min_interval, max_interval)
-  if min_interval.zero? # To prevent division by zero
-    min_interval += 0.000001
-  end
+  min_interval += 0.000001 if min_interval.zero? # To prevent division by zero
 
   if (min_interval**2 - number).abs < 0.000001
     min_interval.to_int
