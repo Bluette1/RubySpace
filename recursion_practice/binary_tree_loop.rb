@@ -109,7 +109,6 @@ module LinkedList
         @tail = next_node
       else
         next_node.next_node = next_node.next_node.next_node
-
       end
     end
   end
