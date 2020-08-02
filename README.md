@@ -26,7 +26,9 @@ This is a workspace for learning and practicing coding in Ruby.
 # Acknowledgements
 
 - The content in this repository was retrieved from or inspired by the following sites
+  - [Microverse](https:www.microverse.org/) - @microverseinc.
   - [The Odin project](https://www.theodinproject.com/courses/ruby-programming)
+  - [Hackerrank](https://www.hackerrank.com/)
   - [Exercism](https://exercism.io/tracks/ruby)
   - [Codewars](https://www.codewars.com/)
 ## 🤝 Contributing
