@@ -235,12 +235,9 @@ def balanced?(node)
       max_height = height if height > max_height
     end
 
-    begin
-      node = right_nodes.pop
-      height = node.height
-    rescue StandardError
-      break
-    end
+    right_nodes.empty? ? break : node = right_nodes.pop
+
+    height = node.height
   end
   is_balanced
 end
@@ -265,8 +262,8 @@ end
 
 def balanced_tree?(array)
   root = array_to_tree(array)
-  # balanced?(root)
-  balanced_tr?(root)
+  balanced?(root)
+  # balanced_tr?(root)
 end
 
 puts balanced_tree?([1, 2, 0, 3, 4, 0, 0])
