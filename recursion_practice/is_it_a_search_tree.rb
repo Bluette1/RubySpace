@@ -46,7 +46,7 @@ end
 
 def search_tree?(array)
   root = array_to_tree(array)
-  return pre_order(root).sort == in_order(root) # or `in_order(root).sort == in_order(root)` 
+  pre_order(root).sort == in_order(root) # or `in_order(root).sort == in_order(root)`
 end
 
 def pre_order(node, result = [])
@@ -57,15 +57,9 @@ def pre_order(node, result = [])
   pre_order(node.right, result)
 end
 
-def print_in_order (node)
-  return '' if node.nil?
-  result = in_order(node.left)
-  result += "#{node.data} " 
-  result + in_order(node.right)
-end
-
-def in_order (node, result = [])
+def in_order(node, result = [])
   return result if node.nil?
+
   in_order(node.left, result)
   result << node.data
   in_order(node.right, result)
