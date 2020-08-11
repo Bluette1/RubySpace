@@ -42,11 +42,11 @@ def bfs(graph)
     # Take item off the queue
     node = queue.pop
     graph[node].each do |item|
-      unless breadth_first.include?(item)
-        breadth_first << item
-        # Add the item to the queue
-        queue << item
-      end
+      next if breadth_first.include?(item)
+
+      breadth_first << item
+      # Add the item to the queue
+      queue << item
     end
   end
   breadth_first
