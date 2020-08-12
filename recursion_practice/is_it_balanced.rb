@@ -1,3 +1,24 @@
+# Is it balanced?
+# Can you check if a tree is a height-balanced?
+
+# In this challenge, a tree is height-balanced if the maximum and minimum
+#  path from any node to a terminal (null node) descendant differs by at most 1.
+
+# For example, this tree is not height-balanced, since the minimum path
+#  going down from 5 (to the left) is 2 less than the maximum path from 5 (to 9 and 4).
+
+# Challenge
+# Return true if a given tree is height-balanced and false otherwise.
+
+# Example
+# tree = [1, 2, 0, 3, 4, 0, 0]
+
+# balanced_tree?(tree)
+# # => false
+
+# Get stuck and need some hint?
+# Check below link:
+# https://gitlab.com/microverse/guides/coding_challenges/hints/blob/master/challenges/tress_and_graphs/is-it-balanced.md
 class ListNode
   attr_accessor :value, :next_node
 
@@ -99,7 +120,8 @@ module LinkedList
       # idx = index - 1
       # delete the node after this position
 
-      # Check if the next node is nil, meaning we're deleting a node which does not exist
+      # Check if the next node is nil, meaning we're deleting a
+      #  node which does not exist
       if next_node.next_node.nil?
         puts "Can't delete an inexistent node"
 
@@ -111,6 +133,10 @@ module LinkedList
         next_node.next_node = next_node.next_node.next_node
       end
     end
+  end
+
+  def empty?
+    @head.nil?
   end
 end
 
@@ -139,12 +165,13 @@ class Node
     @height = height
   end
 end
-def array_to_tree(array, idx)
-  return nil if idx >= array.length || (array[idx]).zero?
 
-  node = Node.new(array[idx])
-  node.left = array_to_tree(array, 2 * idx + 1)
-  node.right = array_to_tree(array, 2 * idx + 2)
+def array_to_tree(array, index = 0)
+  return nil if index >= array.length || (array[index]).zero?
+
+  node = Node.new(array[index])
+  node.left = array_to_tree(array, 2 * index + 1)
+  node.right = array_to_tree(array, 2 * index + 2)
   node
 end
 
@@ -174,28 +201,81 @@ def maximum_height(node)
   max_height
 end
 
+def balanced_tr?(root)
+  stack = Stack.new
+  stack.push(root)
+
+  until stack.empty?
+    current = stack.pop
+    left_height = maximum_height(current.left)
+    right_height = maximum_height(current.right)
+    return false if (left_height - right_height).abs > 1
+
+    stack.push(current.left) unless current.left.nil?
+    stack.push(current.right) unless current.right.nil?
+  end
+  true
+end
+
+def balanced?(node)
+  right_nodes = Stack.new
+  max_height = nil
+  height = 0
+  is_balanced = true
+
+  loop do
+    height = move_left(node, right_nodes, height)
+    return false if height.negative?
+
+    if max_height.nil?
+      max_height = height
+    else
+      return false unless (max_height - height).abs < 2
+
+      max_height = height if height > max_height
+    end
+
+    right_nodes.empty? ? break : node = right_nodes.pop
+
+    height = node.height
+  end
+  is_balanced
+end
+
 def move_left(node, right_nodes, height)
+  empty_right_node_height = nil
   until node.nil?
     height += 1
-    unless node.right.nil?
+    if node.right.nil?
+
+      empty_right_node_height = height if empty_right_node_height.nil?
+    else
       node.right.height = height
       right_nodes.push(node.right)
     end
+    return -1 if !empty_right_node_height.nil? && height - empty_right_node_height > 1
+
     node = node.left
   end
   height
 end
 
-def tree_height(tree_as_list)
-  tree = array_to_tree(tree_as_list, 0)
-  maximum_height(tree)
+def balanced_tree?(array)
+  root = array_to_tree(array)
+  balanced?(root)
+  # balanced_tr?(root)
 end
 
-puts tree_height([2, 7, 5, 2, 6, 0, 9])
-# => 3
+puts balanced_tree?([1, 2, 0, 3, 4, 0, 0])
+# => false
+puts balanced_tree?([1, 2, 0, 3, 0, 0, 0])
+# => false
 
-puts tree_height([1, 7, 5, 2, 6, 0, 9, 3, 7, 5, 11, 0, 0, 4, 0])
-# => 4
+puts balanced_tree?([1, 2, 3, 4, 5, 6, 7])
+# => true
 
-puts tree_height([5, 3, 2, 9, 0, 0, 7, 0, 0, 0, 0, 0, 0, 5, 0])
-# => 4
+puts balanced_tree?([1, 2, 3, 4, 5])
+# =>true
+
+puts balanced_tree?([1, 2, 3, 4])
+# =>true

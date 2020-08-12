@@ -100,6 +100,18 @@ def post_order(node)
   result + "#{node.data} "
 end
 
+def in_order(node)
+  return '' if node.nil?
+
+  result = in_order(node.left).to_s
+  result += node.data.to_s
+  result + " #{in_order(node.right)}"
+end
+
 tree = array_to_tree([10, 1, 2, 3, 4, 5, 6], 0)
+puts pre_order(tree)
+# => 10 1 3 4 2 5 6
 puts post_order(tree)
 #=> 3 4 1 5 6 2 10
+puts in_order(tree)
+# => 3 1 4 10 5 2 6

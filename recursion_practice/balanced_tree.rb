@@ -78,6 +78,10 @@ module LinkedList
     end
   end
 
+  def empty?
+    @head.nil?
+  end
+
   def remove(index)
     # Either we are removing from the front, in the middle, or at the back of the list
 
@@ -134,20 +138,22 @@ class Node
   attr_reader :data
   attr_accessor :left, :right, :height
 
-  def initialize(data, height = nil)
+  def initialize(data)
     @data = data
     @height = height
   end
 end
-def array_to_tree(array, idx)
-  return nil if idx >= array.length || (array[idx]).zero?
+# helper function
+def array_to_tree(array, index = 0)
+  return nil if index >= array.length || (array[index]).zero?
 
-  node = Node.new(array[idx])
-  node.left = array_to_tree(array, 2 * idx + 1)
-  node.right = array_to_tree(array, 2 * idx + 2)
+  node = Node.new(array[index])
+  node.left = array_to_tree(array, 2 * index + 1)
+  node.right = array_to_tree(array, 2 * index + 2)
   node
 end
 
+# helper function
 def maximum_height(node)
   right_nodes = Stack.new
   max_height = 0
@@ -174,28 +180,63 @@ def maximum_height(node)
   max_height
 end
 
+# helper function
+def balanced?(node)
+  right_nodes = Stack.new
+  max_height = maximum_height(node)
+  height = 0
+  is_balanced = true
+
+  loop do
+    height = move_left(node, right_nodes, height)
+    return false if height.negative?
+
+    difference = (max_height - height).abs
+    return false unless difference < 2
+
+    begin
+      node = right_nodes.pop
+      height = node.height
+    rescue StandardError
+      break
+    end
+  end
+  is_balanced
+end
+
 def move_left(node, right_nodes, height)
+  empty_right_node_height = nil
   until node.nil?
     height += 1
-    unless node.right.nil?
+    if node.right.nil?
+
+      empty_right_node_height = height if empty_right_node_height.nil?
+    else
       node.right.height = height
       right_nodes.push(node.right)
     end
+    return -1 if !empty_right_node_height.nil? && height - empty_right_node_height > 1
+
     node = node.left
   end
   height
 end
 
-def tree_height(tree_as_list)
-  tree = array_to_tree(tree_as_list, 0)
-  maximum_height(tree)
+def balanced_tree?(array)
+  root = array_to_tree(array)
+  balanced?(root)
 end
 
-puts tree_height([2, 7, 5, 2, 6, 0, 9])
-# => 3
+puts balanced_tree?([1, 2, 0, 3, 4, 0, 0])
+# => false
+puts balanced_tree?([1, 2, 0, 3, 0, 0, 0])
+# => false
 
-puts tree_height([1, 7, 5, 2, 6, 0, 9, 3, 7, 5, 11, 0, 0, 4, 0])
-# => 4
+puts balanced_tree?([1, 2, 3, 4, 5, 6, 7])
+# => true
 
-puts tree_height([5, 3, 2, 9, 0, 0, 7, 0, 0, 0, 0, 0, 0, 5, 0])
-# => 4
+puts balanced_tree?([1, 2, 3, 4, 5])
+# =>true
+
+puts balanced_tree?([1, 2, 3, 4])
+# =>true
