@@ -21,7 +21,9 @@
 #  sub-array and then return the index location where the pivot gets placed,
 #  so you can then call partition on each side of the pivot.
 
-# Since you cannot just create new sub-arrays for the elements, Partition will need to use another trick to keep track of which elements are greater and which are smaller than the pivot.
+# Since you cannot just create new sub-arrays for the elements,
+#  Partition will need to use another trick to keep track of which elements
+#  are greater and which are smaller than the pivot.
 
 # The In-place Trick
 
