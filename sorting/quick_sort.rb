@@ -84,13 +84,12 @@ def partition(array, start, ending)
     end
 
     # move the [stored] value to the prev position of the pivot
-    # print store
     array[idx] = store
+
     # adjust the position of the pivot
     idx += 1
   end
   # array
-  # p array
   idx
 end
 
