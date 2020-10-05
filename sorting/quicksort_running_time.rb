@@ -110,5 +110,6 @@ def insertion_sort(array)
   end
   shifts
 end
+
 puts quicksort_running_time([1, 3, 9, 8, 2, 7, 5])
 # => 1
