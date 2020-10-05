@@ -43,32 +43,34 @@
 # * This will do the merging and sorting of two subarrays.
 def merge_sort(array1, array2)
   array = []
-  i = 0
-  j = 0
+  i_dx = 0
+  j_dx = 0
 
-  while i < array1.length && j < array2.length
-    if array1[i] < array2[j]
-      array << array1[i]
-      i += 1
+  while i_dx < array1.length && j_dx < array2.length
+    if array1[i_dx] < array2[j_dx]
+      array << array1[i_dx]
+      i_dx += 1
     else
-      array << array2[j]
-      j += 1
+      array << array2[j_dx]
+      j_dx += 1
     end
   end
- 
+
   # Add the remaining elements in the left sublist
-  while i < array1.length
-    array << array1[i]
-    i += 1
-  end
+  add_elements(i_dx, array, array1)
 
-   # Add the remaining elements in the right sublist
-  while j < array2.length
-    array << array2[j]
-    j += 1
-  end
+  # Add the remaining elements in the right sublist
+  add_elements(j_dx, array, array2)
 
-  return array
+  array
+end
+
+def add_elements(idx, array, source)
+  # Add the remaining elements in the left sublist
+  while idx < source.length
+    array << source[idx]
+    idx += 1
+  end
 end
 
 p merge_sort([1, 3, 9, 11], [2, 4, 6, 8])
