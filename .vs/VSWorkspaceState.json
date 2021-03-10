@@ -1,7 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\sorting",
+    "\\sorting\\bubblesort",
+    "\\sorting\\insertionsort",
+    "\\sorting\\mergesort",
+    "\\sorting\\quicksort",
     "\\towers_of_hanoi"
   ],
+  "SelectedNode": "\\sorting\\bubblesort",
   "PreviewInSolutionExplorer": false
 }
