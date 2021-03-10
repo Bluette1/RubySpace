@@ -1,12 +1,14 @@
 # Quick-Sort Advanced 2
 
 # Guideline
-# In-place quicksort algorithm that uses shifting instead of swapping. 
+# In-place quicksort algorithm that uses shifting instead of swapping.
 # Swapping two elements is of course more efficient than shifting multiple elements
 
 # The method
-# If an element is smaller than the Pivot, you should shift the larger elements upwards one position swap it with a (larger)
-# to create the insert position for this smaller element. Just like in the other quicksort, larger elements can just remain
+# If an element is smaller than the Pivot, you should shift the larger elements
+# upwards one position swap it with a (larger)
+# to create the insert position for this smaller element.
+# Just like in the other quicksort, larger elements can just remain
 #  where they are, and the pivot can then be inserted in the middle at the end
 #  of the partition method.
 
@@ -63,4 +65,3 @@ def partition(array, start, ending)
   end
   idx
 end
-

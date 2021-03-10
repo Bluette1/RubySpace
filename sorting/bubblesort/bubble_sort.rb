@@ -1,7 +1,7 @@
-#     This will sort the elements of an array of integers using Bubble Sort.
-#     The array is traversed while comparing adjacent elements and swapping
-#     their positions where necessary. After each traversal we decrement the
-#     position of the last index.
+# This will sort the elements of an array of integers using Bubble Sort.
+# The array is traversed while comparing adjacent elements and swapping
+# their positions where necessary. After each traversal we decrement the
+# position of the last index.
 
 def bubble_sort_concept_one(array)
   n = array.length
