@@ -25,5 +25,18 @@ def minimum_jumps(start_idx, end_idx, arr)
   min_jumps
 end
 
-# p minimum_jumps(0, 4, [2, 3, 1, 1, 4]);
+def min_jumps_dp(_start_idx, _end_idx, arr)
+  optimum = [0] * arr.length
+  (1..optimum.length - 1).each do |i_idx|
+    optimum[i_idx] = Float::INFINITY
+    (0..i_idx - 1).each do |j_idx|
+      optimum[i_idx] = [optimum[i_idx], optimum[j_idx] + 1].min if i_idx <= arr[j_idx] + j_idx
+    end
+  end
+  optimum[-1]
+end
+
+p minimum_jumps(0, 4, [2, 3, 1, 1, 4]);
+p minimum_jumps_dp(0, 4, [2, 3, 1, 1, 4]);
 p minimum_jumps(0, 9, [2, 3, 1, 1, 2, 4, 2, 0, 1, 1])
+p min_jumps_dp(0, 9, [2, 3, 1, 1, 2, 4, 2, 0, 1, 1])
