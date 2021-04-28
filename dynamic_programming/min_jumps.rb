@@ -5,7 +5,7 @@
 # of jumps.
 # First natural/bruteforce solution: minimum_jumps(start_idx, end_idx) = MIN(minimum_jumps(i, end_idx)
 # for all i that are reachable from start_idx).
-
+# See https://medium.com/swlh/dynamic-programming-minimum-jumps-from-start-finish-b2943afe4a72
 def minimum_jumps(start_idx, end_idx, arr)
   return 0 if start_idx == end_idx
 
