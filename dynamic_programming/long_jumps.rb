@@ -14,7 +14,7 @@
 # Does this problem ring of dynamic programming? Yes, I think
 
 # The first solution contains the minimum number of steps.
-# If all possible paths are exhausted return -1;
+# If all possible paths are exhausted return infinity i.e impossible;
 
 # But how do we know we have exhausted all the possibilities?
 # If revisit the same node in a given path; we discard that path
@@ -86,3 +86,6 @@ def find_jumps(max_idx, curr_idx, arr, jumps, track_arr)
   end
 end
 # rubocop:enable Metrics/CyclomaticComplexity
+
+# p long_jumps([1, 7, 1, 1, 1, 1])
+p long_jumps([2, 3, 5, 6])
