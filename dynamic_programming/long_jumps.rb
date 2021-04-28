@@ -40,13 +40,9 @@ def long_jumps(arr)
   curr_idx_right = right_move(max_idx, arr)
   jumps = 1
 
-  return jumps if max_idx == curr_idx_left
+  return jumps if max_idx == curr_idx_left || max_idx == curr_idx_right
 
-  return jumps if max_idx == curr_idx_right
-
-  return jumps + 1 if max_idx <= curr_idx_left + arr[curr_idx_left]
-
-  return jumps + 1 if max_idx <= curr_idx_right + arr[curr_idx_right]
+  return jumps + 1 if max_idx <= curr_idx_left + arr[curr_idx_left] || max_idx <= curr_idx_right + arr[curr_idx_right]
 
   # repeatively move left or right
 
@@ -60,14 +56,9 @@ def find_jumps(max_idx, curr_idx, arr, jumps, track_arr)
   (1..arr[curr_idx]).each do |steps|
     curr_idx_left = left_move(steps, arr)
     curr_idx_right = right_move(steps, arr)
+    return jumps if max_idx == curr_idx_left || max_idx == curr_idx_right
 
-    return jumps if max_idx == curr_idx_left
-
-    return jumps if max_idx == curr_idx_right
-
-    return jumps + 1 if max_idx <= curr_idx_left + arr[curr_idx_left]
-
-    return jumps + 1 if max_idx <= curr_idx_right + arr[curr_idx_right]
+    return jumps + 1 if max_idx <= curr_idx_left + arr[curr_idx_left] || max_idx <= curr_idx_right + arr[curr_idx_right]
 
     result_right = Float::INFINITY
     result_left = Float::INFINITY
