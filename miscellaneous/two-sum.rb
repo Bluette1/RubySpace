@@ -20,7 +20,6 @@ def dynamic_two_sum(nums, target)
   (0..target).each do |sum|
     (0..nums.length - 1).each do |v|
       if nums[v] <= sum
-
         m = sums[sum - nums[v]].clone
         
         if !m.length.zero?
@@ -31,7 +30,11 @@ def dynamic_two_sum(nums, target)
             sums[sum] = [v]
           else 
             n = sums[sum].clone
-            n << v if nums[v] == sum 
+            s = 0
+            (0..n.length - 1).each do |i_sum|
+              s += nums[i_sum]
+            end
+            n << v if nums[v] == sum  && s < sum
             sums[sum] = n
            end
 
@@ -65,3 +68,4 @@ p dynamic_two_sum([3,2,4], 6)
 # Output: [0,1]
 # p two_sum([3, 3], 6)
 p dynamic_two_sum([3, 3], 6)
+# p dynamic_two_sum([3, 3], 3)
