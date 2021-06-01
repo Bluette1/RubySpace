@@ -3,24 +3,22 @@
 # @return {Integer[]}
 def two_sum(nums, target)
   res = nil
-  
+
   (0..nums.length - 1).each do |idx_x|
     (idx_x + 1..nums.length - 1).each do |idx_y|
-      if (nums[idx_x] + nums[idx_y] === target)
-        res = [idx_x, idx_y]
-      end
+      res = [idx_x, idx_y] if nums[idx_x] + nums[idx_y] == target
     end
-  end 
-  res  
+  end
+  res
 end
 
 def dynamic_two_sum(nums, target)
   sum_hash = {}
   ans = nil
   (0..nums.length).each do |idx|
-    if (sum_hash[target - nums[idx]])
+    if sum_hash[target - nums[idx]]
       # We've found the corresponding addend
-      ans = [sum_hash[target - nums[idx]], idx] 
+      ans = [sum_hash[target - nums[idx]], idx]
       break
     else
       # Store this value in the hash
@@ -53,4 +51,4 @@ end
 # p dynamic_two_sum([3, 3], 6)
 # p dynamic_two_sum([3, 3], 3)
 
-p dynamic_two_sum([2,5,5,11], 10)
+p dynamic_two_sum([2, 5, 5, 11], 10)
