@@ -14,6 +14,22 @@ def two_sum(nums, target)
   res  
 end
 
+def dynamic_two_sum(nums, target)
+  sum_hash = {}
+  ans = nil
+  (0..nums.length).each do |idx|
+    if (sum_hash[target - nums[idx]])
+      # We've found the corresponding addend
+      ans = [sum_hash[target - nums[idx]], idx] 
+      break
+    else
+      # Store this value in the hash
+      sum_hash[nums[idx]] = idx
+    end
+  end
+  ans
+end
+
 # Example 1:
 
 # Input: nums = [2,7,11,15], target = 9
