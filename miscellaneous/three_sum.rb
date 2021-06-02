@@ -1,8 +1,8 @@
 def check_valid(tupple, nums)
   valid = true
-    (0..tupple.length - 1).each do |posn|
-      valid = false if nums.count(tupple[posn]) < tupple.count(tupple[posn])
-    end
+  (0..tupple.length - 1).each do |posn|
+    valid = false if nums.count(tupple[posn]) < tupple.count(tupple[posn])
+  end
   valid
 end
 
@@ -24,6 +24,7 @@ def three_sum(nums)
   nums.sort!
   (0..nums.length - 1).each do |idx|
     next if nums[idx] == nums[idx - 1]
+
     target = -1 * nums[idx]
     tupples = dynamic_two_sum(nums, target)
     tupples.each do |tupple|
@@ -45,5 +46,5 @@ end
 # nums = [0]
 
 # nums = [0,0,0,0]
-nums = [3,0,-2,-1,1,2]
+nums = [3, 0, -2, -1, 1, 2]
 p three_sum(nums)
