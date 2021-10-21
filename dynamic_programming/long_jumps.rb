@@ -22,15 +22,13 @@
 # There is a tree structure embedded in this strategy, therefore think recursion.
 def right_move(curr_idx, arr)
   n_jumps = arr[curr_idx]
-  idx = (curr_idx + n_jumps) % arr.length
-  idx
+  (curr_idx + n_jumps) % arr.length
 end
 
 def left_move(curr_idx, arr)
   n_jumps = arr[curr_idx]
   curr_idx = (arr.length - 1) - curr_idx
-  idx = (curr_idx + n_jumps) % arr.length
-  idx
+  (curr_idx + n_jumps) % arr.length
 end
 
 def long_jumps(arr)

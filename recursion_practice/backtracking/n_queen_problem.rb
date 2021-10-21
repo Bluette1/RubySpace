@@ -12,7 +12,7 @@ class NQueenProblem
       (0..board[row].length - 1).each do |col|
         line += board[row][col].to_s
       end
-      board_str += line + "\n"
+      board_str += "#{line}\n"
     end
     board_str
   end
