@@ -73,8 +73,7 @@ def calculate_new_rt(root, number)
   guessed_square = root**2
   fx = guessed_square - number
   deriv_fx = 2 * root
-  new_rt = root - (fx / deriv_fx)
-  new_rt
+  root - (fx / deriv_fx)
 end
 
 puts sqrt(25, 2.8)

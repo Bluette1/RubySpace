@@ -62,7 +62,7 @@
 #    2->3
 def move(disks, starting, goal)
   if disks == 1 # base case
-    puts starting + '->' + goal
+    puts "#{starting}->#{goal}"
   else
 
     # Steps:

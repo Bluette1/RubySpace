@@ -38,7 +38,7 @@ module LinkedList
     next_node = @head
     idx = 0
     until next_node.nil?
-      p idx.to_s + ': ' + next_node.value.to_s
+      p "#{idx}: #{next_node.value}"
       next_node = next_node.next_node
       idx += 1
     end
@@ -143,6 +143,7 @@ class Node
     @height = height
   end
 end
+
 # helper function
 def array_to_tree(array, index = 0)
   return nil if index >= array.length || (array[index]).zero?

@@ -48,6 +48,7 @@ class Node
     @height = height
   end
 end
+
 def array_to_tree(array, idx)
   return nil if idx >= array.length || (array[idx]).zero?
 
