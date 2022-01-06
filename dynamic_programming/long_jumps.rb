@@ -22,15 +22,13 @@
 # There is a tree structure embedded in this strategy, therefore think recursion.
 def right_move(curr_idx, arr)
   n_jumps = arr[curr_idx]
-  idx = (curr_idx + n_jumps) % arr.length
-  idx
+  (curr_idx + n_jumps) % arr.length
 end
 
 def left_move(curr_idx, arr)
   n_jumps = arr[curr_idx]
   curr_idx = (arr.length - 1) - curr_idx
-  idx = (curr_idx + n_jumps) % arr.length
-  idx
+  (curr_idx + n_jumps) % arr.length
 end
 
 def long_jumps(arr)
@@ -52,31 +50,28 @@ def long_jumps(arr)
 end
 
 # rubocop:disable Metrics/CyclomaticComplexity
-def find_jumps(max_idx, curr_idx, arr, jumps, track_arr)
-  (1..arr[curr_idx]).each do |steps|
-    curr_idx_left = left_move(steps, arr)
-    curr_idx_right = right_move(steps, arr)
-    return jumps if max_idx == curr_idx_left || max_idx == curr_idx_right
+def find_jumps(max_idx, _curr_idx, arr, jumps, track_arr)
+  curr_idx_left = left_move(steps, arr)
+  curr_idx_right = right_move(steps, arr)
+  return jumps if max_idx == curr_idx_left || max_idx == curr_idx_right
 
-    return jumps + 1 if max_idx <= curr_idx_left + arr[curr_idx_left] || max_idx <= curr_idx_right + arr[curr_idx_right]
+  return jumps + 1 if max_idx <= curr_idx_left + arr[curr_idx_left] || max_idx <= curr_idx_right + arr[curr_idx_right]
 
-    result_right = Float::INFINITY
-    result_left = Float::INFINITY
+  result_right = Float::INFINITY
+  result_left = Float::INFINITY
 
-    unless track_arr.include?(curr_idx_right)
-      track_arr << curr_idx_right
-      result_right = find_jumps(max_idx, curr_idx_right, arr, jumps + 1, track_arr)
-    end
-
-    unless track_arr.include?(curr_idx_left)
-      track_arr << curr_idx_left
-      result_left = find_jumps(max_idx, curr_idx_left, arr, jumps + 1, track_arr)
-    end
-
-    return [result_left, result_right].min
+  unless track_arr.include?(curr_idx_right)
+    track_arr << curr_idx_right
+    result_right = find_jumps(max_idx, curr_idx_right, arr, jumps + 1, track_arr)
   end
+
+  unless track_arr.include?(curr_idx_left)
+    track_arr << curr_idx_left
+    result_left = find_jumps(max_idx, curr_idx_left, arr, jumps + 1, track_arr)
+  end
+
+  [result_left, result_right].min
 end
 # rubocop:enable Metrics/CyclomaticComplexity
-
-# p long_jumps([1, 7, 1, 1, 1, 1])
-p long_jumps([2, 3, 5, 6])
+p long_jumps([1, 7, 1, 1, 1, 1])
+# p long_jumps([2, 3, 5, 6])
