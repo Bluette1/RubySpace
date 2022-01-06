@@ -49,6 +49,7 @@ def long_jumps(arr)
   [result_left, result_right].min
 end
 
+# rubocop:disable Metrics/CyclomaticComplexity
 def find_jumps(max_idx, _curr_idx, arr, jumps, track_arr)
   curr_idx_left = left_move(steps, arr)
   curr_idx_right = right_move(steps, arr)
@@ -71,5 +72,6 @@ def find_jumps(max_idx, _curr_idx, arr, jumps, track_arr)
 
   [result_left, result_right].min
 end
+# rubocop:enable Metrics/CyclomaticComplexity
 p long_jumps([1, 7, 1, 1, 1, 1])
 # p long_jumps([2, 3, 5, 6])
