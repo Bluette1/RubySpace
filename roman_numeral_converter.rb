@@ -1,7 +1,7 @@
 # Create a method which converts an integer to roman numerals.
 # Example: integer_to_roman(156) => 'CLVI'
-def convert_roman(num, posn, res)
-  map = {
+def map
+  {
     1 => 'I',
     5 => 'V',
     10 => 'X',
@@ -10,6 +10,35 @@ def convert_roman(num, posn, res)
     500 => 'D',
     1000 => 'M'
   }
+end
+
+def find_res(res, times, divisor)
+  while times.positive?
+    res += map[divisor].to_s
+    times -= 1
+  end
+  res
+end
+
+def convert_less_than_ten(value, divisor, res, posn)
+  if value == 5
+    res += map[5 * divisor].to_s
+  elsif value == 4
+    res += "#{map[divisor]}#{map[5 * divisor]}"
+  elsif value == 9
+    res += "#{map[divisor]}#{map[10**(posn + 1)]}"
+  elsif value < 4
+    times = value
+    res = find_res(res, times, divisor)
+  elsif value > 5
+    res += map[5 * divisor].to_s
+    times = value - 5
+    res = find_res(res, times, divisor)
+  end
+  res
+end
+
+def convert_roman(num, posn, res)
   return map[num] if map[num]
 
   divisor = 10**posn
@@ -19,28 +48,7 @@ def convert_roman(num, posn, res)
   return res if value.zero?
   return convert_roman(num, posn + 1, res) if value >= 10
 
-  if value == 5
-    res += (map[5 * divisor]).to_s
-  elsif value == 4
-    res += "#{map[divisor]}#{map[5 * divisor]}"
-  elsif value == 9
-    const prev = map[divisor]
-    const next_div = 10**(posn + 1)
-    res += "#{prev}#{map[next_div]}"
-  elsif value < 4
-    times = value
-    while times.positive?
-      res += (map[divisor]).to_s
-      times -= 1
-    end
-  elsif value > 5
-    res += (map[5 * divisor]).to_s
-    times = value - 5
-    while times.positive?
-      res += (map[divisor]).to_s
-      times -= 1
-    end
-  end
+  res = convert_less_than_ten(value, divisor, res, posn)
   "#{convert_roman(num, posn + 1, res)}#{convert_roman(rem, 0, '')}"
 end
 
