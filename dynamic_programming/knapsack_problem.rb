@@ -1,5 +1,5 @@
 def knapsack_recursive_soln(max_wght, wght, val, num)
-  return 0 if num == 0 || max_wght == 0
+  return 0 if num.zero? || max_wght.zero?
   # If the nth weight of nth solution is greater than the max capacity,
   # return the soln for n-1th weight
   return knapsack_recursive_soln(max_wght, wght, val, num - 1) if wght[num - 1] > max_wght
@@ -13,7 +13,7 @@ def knapsack_dp_soln(max_wght, wght, val, num)
 
   (0..num).each do |row|
     (0..max_wght).each do |col|
-      table[row][col] = 0 if row == 0 || col == 0
+      table[row][col] = 0 if row.zero? || col.zero?
       table[row][col] = if wght[row - 1] > col
                           table[row - 1][col]
                         else

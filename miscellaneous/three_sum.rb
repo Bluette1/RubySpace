@@ -46,5 +46,8 @@ end
 # nums = [0]
 
 # nums = [0,0,0,0]
-nums = [3, 0, -2, -1, 1, 2]
-p three_sum(nums)
+# nums = [3, 0, -2, -1, 1, 2]
+# p three_sum(nums)
+
+# p dynamic_two_sum([-1, 0, 1, 2, -1, -4], -1)
+p dynamic_two_sum([-1, 0, 1, 2, -4], -1)
