@@ -14,14 +14,16 @@
 # graph = {
 #   0 => [2],
 #   1 => [4],
-#   2 => [5, 0, 3],
+#   2 => [5, 0, 3, 6],
 #   3 => [2],
 #   4 => [1, 5],
-#   5 => [4, 2]
+#   5 => [4, 2],
+#   6 => [2]
 # }
 
 # depth_first_search(graph)
-# # => [0, 2, 5, 4, 1, 3]
+#  => [0, 2, 5, 4, 1, 3]
+#  => [0, 2, 5, 4, 1, 3, 6]
 
 # Explanation
 # For this challenge, visit equivalent nodes in the same order as their input. For example,
@@ -50,7 +52,7 @@ def depth_first_search(graph)
 
       node = graph[node][start]
     end
-    stack.empty? ? break : node = stack.pop
+    stack.empty? ? break : node = stack.shift
   end
   depth_first
 end
@@ -61,30 +63,41 @@ def push_to_stack(start, stack, depth_first, nodes)
   end
   stack
 end
-p depth_first_search({ 0 => [1, 2], 1 => [0, 3, 4], 2 => [0, 5, 6], 3 => [1], 4 => [1], 5 => [2], 6 => [2] })
+# p depth_first_search({ 0 => [1, 2], 1 => [0, 3, 4], 2 => [0, 5, 6], 3 => [1], 4 => [1], 5 => [2], 6 => [2] })
 # expected: [0, 1, 3, 4, 2, 5, 6]
 
-p depth_first_search({
-                       0 => [1, 2],
-                       1 => [0, 3, 4],
-                       2 => [0, 5, 6],
-                       3 => [1],
-                       4 => [1, 5],
-                       5 => [2, 4],
-                       6 => [2]
-                     })
+# p depth_first_search({
+#                        0 => [1, 2],
+#                        1 => [0, 3, 4],
+#                        2 => [0, 5, 6],
+#                        3 => [1],
+#                        4 => [1, 5],
+#                        5 => [2, 4],
+#                        6 => [2]
+#                      })
 
 # expected: [0, 1, 3, 4, 5, 2, 6]
 
-p depth_first_search({ 0 => [1, 2], 1 => [0, 2], 2 => [0, 1, 3, 4, 5], 3 => [2, 4], 4 => [3, 2], 5 => [2] })
+# p depth_first_search({ 0 => [1, 2], 1 => [0, 2], 2 => [0, 1, 3, 4, 5], 3 => [2, 4], 4 => [3, 2], 5 => [2] })
 # expected: [0, 1, 2, 3, 4, 5]
+
+# p depth_first_search({
+#                        0 => [2],
+#                        1 => [4],
+#                        2 => [5, 0, 3],
+#                        3 => [2],
+#                        4 => [1, 5],
+#                        5 => [4, 2]
+#                      })
+# => [0, 2, 5, 4, 1, 3]
 
 p depth_first_search({
                        0 => [2],
                        1 => [4],
-                       2 => [5, 0, 3],
+                       2 => [5, 0, 3, 6],
                        3 => [2],
                        4 => [1, 5],
-                       5 => [4, 2]
+                       5 => [4, 2],
+                       6 => [2]
                      })
-# => [0, 2, 5, 4, 1, 3]
+# => [0, 2, 5, 4, 1, 3, 6]
